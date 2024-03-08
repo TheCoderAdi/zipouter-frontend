@@ -1,0 +1,41 @@
+.results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  max-width: 90%;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+h3 {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.output {
+  font-weight: bold;
+  color: #555;
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+  margin-block: 20px;
+}
+
+.theme-select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+}
