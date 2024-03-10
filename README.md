@@ -11,13 +11,13 @@ After installing Node.js, you can follow these steps to set up the ZipOuter Fron
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/TheCoderAdi/zipouter.git
+    git clone https://github.com/TheCoderAdi/zipouter-frontend.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd zipouter
+    cd zipouter-frontend
     ```
 
 3. Install dependencies:
