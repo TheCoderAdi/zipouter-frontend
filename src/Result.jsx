@@ -9,7 +9,7 @@ import ResultCards from "./components/ResultCards";
 const Result = () => {
   const { state } = useLocation();
   const navigation = useNavigate();
-
+  console.log({ state });
   const [theme, setTheme] = useState(okaidia);
   const storedTheme = localStorage.getItem("theme") || okaidia;
   useEffect(() => {
@@ -58,7 +58,7 @@ const Result = () => {
             return (
               <ResultCard
                 key={index}
-                result={result.compilationResults}
+                result={result}
                 currentTheme={currentTheme}
               />
             );

@@ -7,7 +7,7 @@ import Loader from "./components/Loader";
 import Lottie from "react-lottie";
 import * as animationData from "./assets/zip.json";
 
-const userServer = "http://localhost:3000";
+const server = "http://localhost:3000";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -18,22 +18,22 @@ const Home = () => {
     multipleUpload: false,
   });
   const [loading, setLoading] = useState(false);
+  const [numFiles, setNumFiles] = useState(0);
+
   const sendDataToServer = async () => {
     try {
       setLoading(true);
       const form = new FormData();
       form.append("file", file);
-      const response = await axios.post(`${userServer}/upload`, form, {
+      const response = await axios.post(`${server}/upload`, form, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
         credentials: "include",
       });
-
-      console.log("Server Response:", response.data.compilationResults);
       setLoading(false);
       navigate("/results", {
-        state: { result: response.data.compilationResults, single: true },
+        state: { result: response.data.results, single: true },
       });
     } catch (error) {
       console.error("Error:", error.message);
@@ -79,7 +79,7 @@ const Home = () => {
       filesArray.forEach((file) => {
         form.append("files", file);
       });
-      const { data } = await axios.post(`${userServer}/upload-multiple`, form, {
+      const { data } = await axios.post(`${server}/upload-multiple`, form, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -167,7 +167,11 @@ const Home = () => {
             </div>
             <div className="file-text">
               <span>
-                {files[0] ? files[0].name : "Click to upload zip files"}
+                {numFiles === 0
+                  ? "Click to upload zip files"
+                  : numFiles === 1
+                  ? `${numFiles} file selected`
+                  : `${numFiles} files selected`}
               </span>
             </div>
             <input
@@ -176,6 +180,7 @@ const Home = () => {
               className="file-input"
               onChange={(e) => {
                 setFiles(e.target.files);
+                setNumFiles(e.target.files.length);
               }}
               multiple
             />
